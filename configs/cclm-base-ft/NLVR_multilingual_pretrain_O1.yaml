@@ -1,0 +1,54 @@
+train_file: [
+"hdfs://path/to/cc-3m-uc2"
+               ]  # multilingual x multimodal
+
+train_dataset_size: 2838361 # for IterableDataset
+images: {image_key: "binary",
+         is_image_rpath: False, # read path or base64 encoding
+         caption_key: "caption",
+         tokenized: False,  # whether texts have been tokenized
+         batch_size: 128,  # 128 x 8 = 1024
+         num_workers: 4,  # better -> the total number of training files % (world_size * num_workers) == 0
+         # language_chosen: ['en'],
+         iter_perc: 1.0,
+}
+
+## Vision Encoder
+vision_config: 'configs/config_swinB_224.json'
+
+use_clip_vit: False
+#image_res: 224
+#patch_size: 16
+
+use_swin: True
+image_res: 224
+patch_size: 32
+
+
+## Text Encoder (& Cross Encoder)
+text_encoder: 'data/xlm-roberta-large'
+text_num_hidden_layers: 12
+
+
+
+## Training
+embed_dim: 256
+
+max_words: 40
+max_tokens: 40
+mask_prob: 0.4
+max_masks: 12
+mask_whole_word: False  # not implemented
+skipgram_prb: 0.2
+skipgram_size: 3
+
+
+use_tlm: False # if true, multitask multilingual tasks
+sample_2_captions: False
+use_one_cl_proj_only: False
+
+
+## Other Settings
+optimizer: {opt: adamW, lr: 3e-5, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: linear, lr: 3e-5, epochs: 2, num_warmup_steps: 0.1}
+accelerator: {SYNCBN: false, FP16_OPT_LEVEL: O1, FP16_LOSS_SCALE: dynamic, RNG_SEED: 42, GRAD_ACCUMULATE_STEPS: 1, CLIP_GRAD_NORM: 1.0}

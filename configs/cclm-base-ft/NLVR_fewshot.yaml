@@ -1,0 +1,36 @@
+# zero shot evaluation
+# id, tr, zh
+train_file: ['data/marvl/marvl-{}_train10x2.json']
+val_file: ['data/marvl/marvl-{}.json']
+image_root: ''
+
+test_file: {}
+
+
+## Vision Encoder
+vision_config: 'configs/config_swinB_384.json'
+
+use_clip_vit: False
+#image_res: 384
+#patch_size: 16
+
+use_swin: True
+image_res: 384
+patch_size: 32
+
+
+## Text Encoder (& Cross Encoder)
+text_encoder: 'data/xlm-roberta-large'
+text_num_hidden_layers: 12
+
+
+
+## Training
+batch_size: 10
+
+
+## Other Settings
+optimizer: {opt: adamW, lr: 1e-5, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: linear, lr: 1e-5, epochs: 60, num_warmup_steps: 0.1}
+start_eval: 9  # epoch index
+eval_interval: 10

@@ -1,0 +1,57 @@
+# Zeroshot Finetune
+train_file:  ['data/wit/annotations-bs64/train_en.jsonl']
+
+val_file: 'data/wit/annotations-bs64/val_en.jsonl'
+
+test_file: {'ar': 'data/wit/annotations-bs64/test_ar.jsonl',
+            'bg': 'data/wit/annotations-bs64/test_bg.jsonl',
+            'da': 'data/wit/annotations-bs64/test_da.jsonl',
+            'el': 'data/wit/annotations-bs64/test_el.jsonl',
+            'en': 'data/wit/annotations-bs64/test_en.jsonl',
+            'et': 'data/wit/annotations-bs64/test_et.jsonl',
+            'id': 'data/wit/annotations-bs64/test_id.jsonl',
+            'ja': 'data/wit/annotations-bs64/test_ja.jsonl',
+            'ko': 'data/wit/annotations-bs64/test_ko.jsonl',
+            'tr': 'data/wit/annotations-bs64/test_tr.jsonl',
+            'vi': 'data/wit/annotations-bs64/test_vi.jsonl',}
+
+gmt_test_file: {'ar': 'data/wit/annotations_machine-translate-bs64/test_ar_gmt.jsonl',
+            'bg': 'data/wit/annotations_machine-translate-bs64/test_bg_gmt.jsonl',
+            'da': 'data/wit/annotations_machine-translate-bs64/test_da_gmt.jsonl',
+            'el': 'data/wit/annotations_machine-translate-bs64/test_el_gmt.jsonl',
+            'et': 'data/wit/annotations_machine-translate-bs64/test_et_gmt.jsonl',
+            'id': 'data/wit/annotations_machine-translate-bs64/test_id_gmt.jsonl',
+            'ja': 'data/wit/annotations_machine-translate-bs64/test_ja_gmt.jsonl',
+            'ko': 'data/wit/annotations_machine-translate-bs64/test_ko_gmt.jsonl',
+            'tr': 'data/wit/annotations_machine-translate-bs64/test_tr_gmt.jsonl',
+            'vi': 'data/wit/annotations_machine-translate-bs64/test_vi_gmt.jsonl',}
+
+## Vision Encoder
+vision_config: 'configs/config_swinB_384.json'
+
+use_clip_vit: False
+#image_res: 384
+#patch_size: 16
+
+use_swin: True
+image_res: 384
+patch_size: 32
+
+## Text Encoder (& Cross Encoder)
+text_encoder: 'data/xlm-roberta-large'
+text_num_hidden_layers: 12
+
+## Training
+batch_size_train: 8
+batch_size_test: 12
+batch_size_test_text: 64
+max_tokens: 80
+embed_dim: 256
+temp: 0.07
+k_test: 128
+use_one_cl_proj_only: False
+
+## Other Settings
+optimizer: {opt: adamW, lr: 3e-5, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: linear, lr: 3e-5, epochs: 5, num_warmup_steps: 0.1}
+start_eval: 3

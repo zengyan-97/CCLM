@@ -1,0 +1,44 @@
+# Fewshot Finetune
+train_file:  ['iglue/datasets/xFlickrCO/annotations/{}/train_{}.jsonl']
+# de en es id ja ru tr zh
+# 1 5 10 25 50 100
+val_file: 'iglue/datasets/xFlickrCO/annotations/{}/test.jsonl'
+
+test_file: {}
+
+image_root: {'flickr30k': 'images/flickr30k-images',
+            'coco': 'images/val2014'}
+            
+
+## Vision Encoder
+vision_config: 'configs/config_swinB_384.json'
+
+use_clip_vit: False
+#image_res: 384
+#patch_size: 16
+
+use_swin: True
+image_res: 384
+patch_size: 32
+
+
+## Text Encoder (& Cross Encoder)
+text_encoder: 'data/xlm-roberta-large'
+text_num_hidden_layers: 12
+
+## Training
+batch_size_train: 8
+batch_size_test: 12
+batch_size_test_text: 64
+max_tokens: 80
+embed_dim: 256
+temp: 0.07
+k_test: 128
+use_one_cl_proj_only: False
+
+## Other Settings
+# iglue paper: 1e-5, 5e-5, 1e-4
+optimizer: {opt: adamW, lr: 1e-5, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: linear, lr: 1e-5, epochs: 60, num_warmup_steps: 0.1}
+start_eval: 9
+eval_interval: 10

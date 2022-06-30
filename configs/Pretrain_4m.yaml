@@ -1,0 +1,102 @@
+## Data
+train_file: [
+"hdfs://path/to/cc-3m-uc2",
+"hdfs://path/to/sbu-mm",
+"hdfs://path/to/vg-mm",
+"hdfs://path/to/coco-mm",
+               ]  # multilingual x multimodal
+
+train_dataset_size: 5004332 # for IterableDataset
+
+images: {image_key: "binary",
+         is_image_rpath: False, # read path or base64 encoding
+         caption_key: "caption",
+         tokenized: False,  # whether texts have been tokenized
+         batch_size: 128,  # 128 x 8 = 1024
+         num_workers: 4,  # better -> the total number of training files % (world_size * num_workers) == 0
+         # language_chosen: ['en'],
+         iter_perc: 1.0,
+}
+
+
+train_file_regions: [
+    'hdfs://path/to/coco_object-mm',
+    'hdfs://path/to/vg_object-mm',
+    'hdfs://path/to/vg_region-mm'
+]  # multilingual x multimodal
+regions: {image_key: "binary", is_image_rpath: False, caption_key: "caption", tokenized: False, code_switch: True,
+          # language_chosen: ['zh', 'en'],
+          careful_hflip: True,
+          batch_size: 128, max_images: 48, max_regions: 5, min_perc_in_image: 0.5, num_workers: 2}
+
+
+train_file_mono: []  # monolingual x multimodal
+images_mono: {image_key: "binary",
+         is_image_rpath: False, # read path or base64 encoding
+         caption_key: "desc",
+         tokenized: False,  # whether texts have been tokenized
+         batch_size: 128,  # 128 x 8 = 1024
+         num_workers: 4,  # better -> the total number of training files % (world_size * num_workers) == 0
+         iter_perc: 1.0,
+}
+
+
+train_file_text: [
+    "hdfs://path/to/wikimatrix",
+]  # multilingual parallel texts
+texts_para: {source_key: "source_text",
+         target_key: "target_text",
+         tokenized: False,  # whether texts have been tokenized
+         batch_size: 128,  # 128 x 8 = 1024
+         num_workers: 4,  # better -> the total number of training files % (world_size * num_workers) == 0
+         iter_perc: 1.0,
+         max_words: 64,
+         max_tokens: 64,
+         mask_prob: 0.4,
+         max_masks: 20,  # if use_tlm, set max_masks -> 2 * max_tokens * mask_prob
+}
+
+
+## Vision Encoder
+use_clip_vit: False
+#vision_config: 'configs/config_clipvitB.json'
+#image_res: 224
+#patch_size: 16
+
+
+use_swin: True
+vision_config: 'configs/config_swinB_224.json'
+image_res: 224
+patch_size: 32
+
+
+## Text Encoder (& Cross Encoder)
+text_encoder: 'data/xlm-roberta-large'
+text_num_hidden_layers: 12  # use only 12 from 24 layers
+
+
+## Training
+calc_image_bbox_loss: False
+embed_dim: 256
+temp: 0.07
+
+max_words: 40
+max_tokens: 40
+mask_prob: 0.4
+max_masks: 12
+
+mask_whole_word: False  # not implemented
+skipgram_prb: 0.2
+skipgram_size: 3
+
+use_tlm: False # if true, multitask multilingual tasks
+sample_2_captions: False
+use_one_cl_proj_only: False
+
+
+## Other Settings
+ckpt_frequent_step: 50000
+ckpt_frequent: 5  # epoch
+optimizer: {opt: adamW, lr: 1e-4, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: linear, lr: 1e-4, epochs: 30, num_warmup_steps: 2500}
+accelerator: {SYNCBN: false, FP16_OPT_LEVEL: O1, FP16_LOSS_SCALE: dynamic, RNG_SEED: 42, GRAD_ACCUMULATE_STEPS: 1, CLIP_GRAD_NORM: 1.0}
