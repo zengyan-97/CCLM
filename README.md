@@ -8,7 +8,7 @@ Cross-Lingual Cross-Modal Pre-training](https://arxiv.org/abs/2206.00621). **Yan
 
 
 
-CCLM (base: 12L swin-base, 6L text, 6L fusion):
+CCLM (base: 12L swin-base, 6L text, 6L fusion):  
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-reasoning-on)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-reasoning-on?p=cross-view-language-modeling-towards-unified)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-question)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-question?p=cross-view-language-modeling-towards-unified)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-natural)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-natural?p=cross-view-language-modeling-towards-unified)
@@ -84,10 +84,9 @@ For distributed training across nodes, see run.py for more details.
 
 
 #### Data
-To facilitate research on multi-lingual multi-modal pre-training, we provide the text translation of [COCO+VG+SBU+CC3M](https://drive.google.com/drive/folders/1W5qgif3u7Z9orlvj3zJ0dUCsrDJl8s4I?usp=sharing) and the filtered subset of  
-[WikiMatrix](https://drive.google.com/drive/folders/1LvuN8WNgMW_RhqEdJucEVKJq0Sowni6s?usp=sharing).   
+To facilitate research on multi-lingual multi-modal pre-training, we provide the text translation of [COCO+VG+SBU+CC3M](https://drive.google.com/drive/folders/1W5qgif3u7Z9orlvj3zJ0dUCsrDJl8s4I?usp=sharing) and the filtered subset of [WikiMatrix](https://drive.google.com/drive/folders/1LvuN8WNgMW_RhqEdJucEVKJq0Sowni6s?usp=sharing).   
 
-🌟 We implement CCLM(4M) following [X-VLM](https://github.com/zengyan-97/X-VLM). We also provide the text translation of [object and region annotations](https://drive.google.com/drive/folders/1W4_wr53DDWLsvuSavNW1iDbSo9yXQQL1?usp=sharing). 
+🌟 We implement CCLM(4M) following [X-VLM](https://github.com/zengyan-97/X-VLM). We also provide the text translation of [Object And Region Annotations](https://drive.google.com/drive/folders/1W4_wr53DDWLsvuSavNW1iDbSo9yXQQL1?usp=sharing). 
 
 **Please cite the corresponding papers appropriately and download the images from their websites.**   
 
