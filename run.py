@@ -113,7 +113,7 @@ def run_nlvr2(args, load_nlvr_pretrain=False):
         from utils.marvl_preproc import marvl_preproc
         marvl_preproc('iglue/datasets/marvl', 'data/marvl')
 
-    assert os.path.exists("images/marvl_official")
+    assert os.path.exists("images/marvl-images")
     assert os.path.exists("images/marvl_fewshot")
     assert os.path.exists('data/marvl')
 

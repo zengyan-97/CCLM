@@ -15,8 +15,8 @@ def marvl_preproc(ipath, opath):
                 data.append({
                     'sentence': d['caption'],
                     'label': d['label'],
-                    'images': ['images/marvl_official/{}/images/{}/{}'.format(d['language'], d['left_img'].split('-')[0], d['left_img']),
-                               'images/marvl_official/{}/images/{}/{}'.format(d['language'], d['right_img'].split('-')[0], d['right_img'])]
+                    'images': ['images/marvl-images/{}/images/{}/{}'.format(d['language'], d['concept'], d['left_img']),
+                               'images/marvl-images/{}/images/{}/{}'.format(d['language'], d['concept'], d['right_img'])]
                 })
             json.dump(data, wf)
     # few shot
