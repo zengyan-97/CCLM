@@ -109,17 +109,9 @@ def run_nlvr2(args, load_nlvr_pretrain=False):
 
     assert os.path.exists("images/nlvr2")
 
-    if not os.path.exists("images/marvl_official"):
-        os.system(f"hdfs dfs -get hdfs://haruna/home/byte_ailab_litg/user/zengyan/vlm/images/marvl_official.tar images/")
-        os.system("tar xf images/marvl_official.tar && mv marvl_official images/")
-
-    if not os.path.exists("images/marvl_fewshot"):
-        os.system(f"hdfs dfs -get hdfs://haruna/home/byte_ailab_litg/user/zengyan/vlm/images/marvl_fewshot.tar images/")
-        os.system("tar xf images/marvl_fewshot.tar && mv marvl_fewshot images/")
-    
     if not os.path.exists('data/marvl'):
         from utils.marvl_preproc import marvl_preproc
-        marvl_preproc('/opt/tiger/luoao/x-vlm/iglue/datasets/marvl', '/opt/tiger/luoao/x-vlm/data/marvl')
+        marvl_preproc('iglue/datasets/marvl', 'data/marvl')
 
     assert os.path.exists("images/marvl_official")
     assert os.path.exists("images/marvl_fewshot")
