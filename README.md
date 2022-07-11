@@ -76,7 +76,6 @@ CCLM/
             tr/...
             zh/...
 ```
-For MaRVL, please download the `marvl-images.zip` and `few-shot.zip` from the [download page](https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP3/42VZ4P), and extract them to `images` with name of `marvl-images` and `marvl_fewshot`.
 
 ## Pretrain
 ```angular2html
@@ -146,8 +145,13 @@ CCLM/
     iglue/
         datasets/...
 ```
-TODO: training scripts on WIT dataset
+For MaRVL, please download the `marvl-images.zip` and `few-shot.zip` from the [download page](https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP3/42VZ4P), and extract them to `images` with name of `marvl-images` and `marvl_fewshot`.
 
+For WIT, please download the `image_data_train.tar` and test images from its [kaggle](https://www.kaggle.com/c/wikipedia-image-caption/data) webpage, and extract them to `images`, `images/wit_test` seperately.
+
+Tips for WIT:
+- The download link of `image_data_train.tar` is in **Data Description**.
+- You need to extract the files again in `images/image_data_train/image_pixels` and `iglue/datasets/wit/annotations/train_en.jsonl.zip`)
 
 ***
 #### Retrieval Tasks: Multi30K and MSCOCO
@@ -263,7 +267,13 @@ You can prepare your data as follows for customization:
 }
 
 # WIT
-# TODO
+{
+    'question_id': '05515938',
+    'question': 'What is this bird called?',
+    'image': '2405722.jpg',
+    'dataset': 'gqa',
+    'answer': 'parrot'
+}
 ```
 
 
