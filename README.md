@@ -99,7 +99,6 @@ Refer [this repo](https://github.com/zengyan-97/X2-VLM) to load the new checkpoi
 
 ## Finetune
 Please download MSCOCO, Multi30K, and IGLUE from the corresponding websites.  
-We provide <u>**checkpoints (and logs) fine-tuned on English train set**</u>: [3M, TODO]() and [4M, TODO](). 
 
 ***
 #### Data: MSCOCO and Multi30K 
