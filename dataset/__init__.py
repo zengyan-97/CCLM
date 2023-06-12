@@ -125,7 +125,7 @@ def create_dataset(dataset, config):
 
         test_dataset_dict = {}
         for language, (rpath, ans_rpath) in config['test_file'].items():
-            test_dataset_dict[language] = vqa_dataset(rpath, test_transform, split='test', answer_list=ans_rpath,
+            test_dataset_dict[language] = vqa_dataset(rpath, test_transform, config['vqa_root'], split='test', answer_list=ans_rpath,
                                                       text_encoder=config['text_encoder'])
 
         return train_dataset, valid_dataset, test_dataset_dict

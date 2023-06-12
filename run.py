@@ -5,6 +5,8 @@ import random
 import argparse
 
 from utils.hdfs_io import HADOOP_BIN, hexists, hmkdir, hcopy
+from utils.marvl_preproc import marvl_preproc
+from utils.wit_preproc import wit_preproc
 
 ############ Set it correctly for distributed training across nodes
 NNODES = 1  # e.g. 1/2/3/4
@@ -110,10 +112,9 @@ def run_nlvr2(args, load_nlvr_pretrain=False):
     assert os.path.exists("images/nlvr2")
 
     if not os.path.exists('data/marvl'):
-        from utils.marvl_preproc import marvl_preproc
         marvl_preproc('iglue/datasets/marvl', 'data/marvl')
 
-    assert os.path.exists("images/marvl_official")
+    assert os.path.exists("images/marvl-images")
     assert os.path.exists("images/marvl_fewshot")
     assert os.path.exists('data/marvl')
 
@@ -223,7 +224,9 @@ def run_wit(args):
     dist_launch = get_dist_launch(args)
     print("### Training WIT", flush=True)
 
-    assert os.path.exists("data/wit")
+    if not os.path.exists("data/wit"):
+        wit_preproc("test", "iglue/datasets/wit/annotations", "images/wit_test", "data/wit/annotations-bs64")
+        wit_preproc("train", "iglue/datasets/wit/annotations", "images/image_data_train/image_pixels", "data/wit/annotations-bs64")
 
     evaluate = ' --evaluate' if args.evaluate else ''
 

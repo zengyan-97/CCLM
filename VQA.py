@@ -100,7 +100,13 @@ def get_acc(results, test_file):
     for rpath in test_file:
         with open(rpath, 'r') as f:
             ann = json.load(f)
-            for k, v in ann.items():
+            if isinstance(ann, list):
+                for item in ann:
+                    item['answer'] = list(item['label'].keys())[0]
+                test_data += ann
+            else:
+                ann = json.load(f)
+                for k, v in ann.items():
                     v['question_id'] = k
                     v['img_id'] = v.pop('imageId')
                     v['sent'] = v.pop('question')
