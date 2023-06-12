@@ -4,30 +4,19 @@
 **[Cross-View Language Modeling: Towards Unified
 Cross-Lingual Cross-Modal Pre-training](https://arxiv.org/abs/2206.00621). **Yan Zeng, Wangchunshu Zhou, Ao Luo, Xinsong Zhang arXiv 2022.**
 
+- June 2023: release more powerful CCLM (base & large) pre-trained based on [X<sup>2</sup>-VLM](https://github.com/zengyan-97/X2-VLM) 
+- May 2023: The paper has been accepted by ACL 2023 
 - June 2022: release preprint in [arXiv](https://arxiv.org/abs/2206.00621) and official PyTorch implementation 
 
 
 
-CCLM (base: 12L swin-base, 6L text, 6L fusion):  
+	
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-reasoning-on)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-reasoning-on?p=cross-view-language-modeling-towards-unified)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-question)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-question?p=cross-view-language-modeling-towards-unified)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-natural)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-natural?p=cross-view-language-modeling-towards-unified)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-text-to-image)](https://paperswithcode.com/sota/zero-shot-cross-lingual-text-to-image?p=cross-view-language-modeling-towards-unified)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-image-to-text)](https://paperswithcode.com/sota/zero-shot-cross-lingual-image-to-text?p=cross-view-language-modeling-towards-unified)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-question)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-question?p=cross-view-language-modeling-towards-unified)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cross-view-language-modeling-towards-unified/zero-shot-cross-lingual-visual-natural)](https://paperswithcode.com/sota/zero-shot-cross-lingual-visual-natural?p=cross-view-language-modeling-towards-unified)
 
-
-<div align="center">
-  <img width="70%" src="cclm-results-1.png">
-</div>
-
-<div align="center">
-  <img width="70%" src="cclm-results-2.png">
-</div>
-
-
-## Hiring
-We are looking for interns at ByteDance AI Lab (in Beijing / Shanghai)! If you are interested in working with us on vision language models, please send your resume to 
-zengyan.yanne@bytedance.com.
 
 
 ## Requirements
@@ -97,6 +86,10 @@ Following previous works, we pretrain the model for only 30 epochs on 8 A100 GPU
 [CCLM (3M, 30 epochs)](https://drive.google.com/file/d/1sR-yyWnSFeyfSNo9K5O9VL-e_VOCHnk5/view?usp=sharing)  
 [CCLM (4M, 30 epochs)](https://drive.google.com/file/d/1fZxxJMq_f3NpxM7qDDAHGULVwolN0Lbi/view?usp=sharing)
 
+Recently, we train CCLM based on X<sup>2</sup>-VLM and achieves better performances.  
+[CCLM-X2VLM-base](http://tosv.byted.org/obj/lab-robot-public/x2vlm_ckpts_2release/cclm_x2vlm_base.th)  
+[CCLM-X2VLM-large](http://tosv.byted.org/obj/lab-robot-public/x2vlm_ckpts_2release/cclm_x2vlm_large.th)  
+Refer [this repo](https://github.com/zengyan-97/X2-VLM) to load the new checkpoints. 
 
 
 ## Finetune
